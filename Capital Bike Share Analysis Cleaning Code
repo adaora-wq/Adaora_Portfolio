@@ -200,3 +200,30 @@ CASE
     ELSE rain_clean
 END AS rain_cleaned
 FROM `capstone1-506616.Bikeshare.BS1_cleaned_V2`
+# Found issue with null values for snow and rain#
+SELECT 
+datetime,
+  count,
+  clouds_all,
+  temp_fahrenheit,
+  temp_min_f,
+  temp_max_f,
+  feels_like_f,
+  pressure,
+  humidity,
+  wind_speed,
+  wind_deg,
+  weather_main,
+  holiday_clean,
+  workingday_clean,
+  snow_clean,
+  categorized_temp,
+  rain_clean,
+  rain_1h,
+  snow_1h,
+
+IFNULL(rain_1h, 0) AS rain_c,
+
+IFNULL(snow_1h, 0) AS snow_c
+
+FROM `capstone1-506616.Bikeshare.BS1_cleaned_V2`
