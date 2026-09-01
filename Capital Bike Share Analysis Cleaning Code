@@ -1,0 +1,202 @@
+SELECT *
+FROM `capstone1-506616.Bikeshare.BS1`;
+# Converting temperature from Fahrenheight to Celsius #
+SELECT *,
+    temp AS temp_celsius,
+    ROUND((temp * 1.8) + 32, 1) AS temp_fahrenheit
+FROM `capstone1-506616.Bikeshare.BS1`;
+SELECT 
+    temp_min AS temp_min_celsius,
+    ROUND((temp_min * 1.8) + 32, 1) AS temp_min_fahrenheit
+FROM `capstone1-506616.Bikeshare.BS1`;
+SELECT 
+    temp_max AS temp_max_celsius,
+    ROUND((temp_max * 1.8) + 32, 1) AS temp_max_fahrenheit
+FROM `capstone1-506616.Bikeshare.BS1`;
+SELECT
+    feels_like AS feels_like_celsius,
+    ROUND((feels_like * 1.8) + 32, 1) AS feels_like_fahrenheit
+FROM `capstone1-506616.Bikeshare.BS1`;
+
+#Categorizing temperature#
+SELECT *,
+CASE 
+        WHEN (temp * 1.8) + 32 < 40 THEN 'Cold (<40°F)'
+        WHEN (temp * 1.8) + 32 BETWEEN 40 AND 60 THEN 'Cool (40-60°F)'
+        WHEN (temp * 1.8) + 32 BETWEEN 61 AND 80 THEN 'Warm (61-80°F)'
+        ELSE 'Hot (>80°F)'
+    END AS categorized_temp
+FROM `capstone1-506616.Bikeshare.BS1`;
+SELECT *,
+CASE 
+        WHEN (temp_min * 1.8) + 32 < 40 THEN 'Cold (<40°F)'
+        WHEN (temp_min * 1.8) + 32 BETWEEN 40 AND 60 THEN 'Cool (40-60°F)'
+        WHEN (temp_min * 1.8) + 32 BETWEEN 61 AND 80 THEN 'Warm (61-80°F)'
+        ELSE 'Hot (>80°F)'
+    END AS categorized_temp_min
+FROM `capstone1-506616.Bikeshare.BS1`;
+SELECT *,
+CASE 
+        WHEN (temp_max * 1.8) + 32 < 40 THEN 'Cold (<40°F)'
+        WHEN (temp_max * 1.8) + 32 BETWEEN 40 AND 60 THEN 'Cool (40-60°F)'
+        WHEN (temp_max * 1.8) + 32 BETWEEN 61 AND 80 THEN 'Warm (61-80°F)'
+        ELSE 'Hot (>80°F)'
+    END AS categorized_temp_max
+FROM `capstone1-506616.Bikeshare.BS1`;
+SELECT *,
+CASE 
+        WHEN (feels_like * 1.8) + 32 < 40 THEN 'Cold (<40°F)'
+        WHEN (feels_like * 1.8) + 32 BETWEEN 40 AND 60 THEN 'Cool (40-60°F)'
+        WHEN (feels_like * 1.8) + 32 BETWEEN 61 AND 80 THEN 'Warm (61-80°F)'
+        ELSE 'Hot (>80°F)'
+    END AS categorized_temp_fl
+FROM `capstone1-506616.Bikeshare.BS1`;
+
+# Identifies the null values and changes them to string or integer #
+SELECT
+  datetime,
+  count,
+  rain_1h,
+  clouds_all,
+  snow_1h,
+  holiday,
+  workingday,
+  temp,
+  feels_like,
+  temp_max,
+  temp_min,
+  pressure,
+  humidity,
+  wind_speed,
+  wind_deg,
+  weather_main,
+    CASE 
+        WHEN holiday = 1 THEN 'Yes'
+        WHEN holiday = 0 THEN 'No'
+        ELSE 'No'
+    END AS holiday_clean,
+    
+    CASE 
+        WHEN workingday = 1 THEN 'Yes'
+        WHEN workingday = 0 THEN 'No'
+        ELSE 'No'
+    END AS workingday_clean,
+    CASE 
+        WHEN rain_1h IS NULL THEN '0'
+    END AS rain_clean,
+    CASE 
+        WHEN snow_1h IS NULL THEN '0'
+    END AS snow_clean,
+FROM `capstone1-506616.Bikeshare.BS1`;
+
+#Finally to get a clear and cleaned table I ran this code:#
+CREATE TABLE `capstone1-506616.Bikeshare.BS1_cleaned_V2` AS
+SELECT 
+  datetime,
+  count,
+  rain_1h,
+  clouds_all,
+  snow_1h,
+  temp AS temp_celsius,
+  ROUND((temp * 1.8) + 32, 1) AS temp_fahrenheit,
+  ROUND((temp_min * 1.8) + 32, 1) AS temp_min_f,
+  ROUND((temp_max * 1.8) + 32, 1) AS temp_max_f,
+  ROUND((feels_like * 1.8) + 32, 1) AS feels_like_f,
+  pressure,
+  humidity,
+  wind_speed,
+  wind_deg,
+  weather_main,
+    # Int to str and null to int#
+   CASE 
+        WHEN holiday = 1 THEN 'Yes'
+        WHEN holiday = 0 THEN 'No'
+        ELSE 'No'
+    END AS holiday_clean,
+    
+    CASE 
+        WHEN workingday = 1 THEN 'Yes'
+        WHEN workingday = 0 THEN 'No'
+        ELSE 'No'
+    END AS workingday_clean,
+    CASE 
+        WHEN rain_1h IS NULL THEN '0'
+    END AS rain_clean,
+    CASE 
+        WHEN snow_1h IS NULL THEN '0'
+    END AS snow_clean,
+    #temperature categories#
+    CASE 
+        WHEN (temp * 1.8) + 32 < 40 THEN 'Cold (<40°F)'
+        WHEN (temp * 1.8) + 32 BETWEEN 40 AND 60 THEN 'Cool (40-60°F)'
+        WHEN (temp * 1.8) + 32 BETWEEN 61 AND 80 THEN 'Warm (61-80°F)'
+        ELSE 'Hot (>80°F)'
+    END AS categorized_temp
+FROM `capstone1-506616.Bikeshare.BS1`;
+SELECT *,
+CASE 
+        WHEN (temp_min * 1.8) + 32 < 40 THEN 'Cold (<40°F)'
+        WHEN (temp_min * 1.8) + 32 BETWEEN 40 AND 60 THEN 'Cool (40-60°F)'
+        WHEN (temp_min * 1.8) + 32 BETWEEN 61 AND 80 THEN 'Warm (61-80°F)'
+        ELSE 'Hot (>80°F)'
+    END AS categorized_temp_min
+FROM `capstone1-506616.Bikeshare.BS1`;
+SELECT *,
+CASE 
+        WHEN (temp_max * 1.8) + 32 < 40 THEN 'Cold (<40°F)'
+        WHEN (temp_max * 1.8) + 32 BETWEEN 40 AND 60 THEN 'Cool (40-60°F)'
+        WHEN (temp_max * 1.8) + 32 BETWEEN 61 AND 80 THEN 'Warm (61-80°F)'
+        ELSE 'Hot (>80°F)'
+    END AS categorized_temp_max,
+    
+    #date extraction#
+    EXTRACT(YEAR FROM datetime) AS year,
+    EXTRACT(MONTH FROM datetime) AS month,
+    EXTRACT(DOW FROM datetime) AS day_of_week,
+    EXTRACT(DOY FROM datetime) AS day_of_year,
+    
+    #weekday or weekend#
+    CASE 
+        WHEN EXTRACT(DOW FROM date) IN (0, 6) THEN 'Weekend'
+        ELSE 'Weekday'
+    END AS type_of_day,
+CASE 
+        WHEN rain_1h IS NULL THEN '0'
+    END AS rain_clean,
+    CASE 
+        WHEN snow_1h IS NULL THEN '0'
+    END AS snow_clean,
+FROM `capstone1-506616.Bikeshare.BS1`
+
+#rain still containing null values#
+SELECT *,
+CASE 
+    WHEN rain_clean IS NULL THEN '0'
+    ELSE rain_clean
+END AS rain_cleaned
+FROM `capstone1-506616.Bikeshare.BS1_cleaned_V2`
+#Final view#
+CREATE TABLE `capstone1-506616.Bikeshare.BS1_cleaned_V3` AS
+SELECT 
+  datetime,
+  count,
+  clouds_all,
+  temp_fahrenheit,
+  temp_min_f,
+  temp_max_f,
+  feels_like_f,
+  pressure,
+  humidity,
+  wind_speed,
+  wind_deg,
+  weather_main,
+  holiday_clean,
+  workingday_clean,
+  snow_clean,
+  categorized_temp,
+  rain_clean,
+CASE 
+    WHEN rain_clean IS NULL THEN '0'
+    ELSE rain_clean
+END AS rain_cleaned
+FROM `capstone1-506616.Bikeshare.BS1_cleaned_V2`
