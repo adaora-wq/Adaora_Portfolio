@@ -1,0 +1,24 @@
+To begin using my newfound skills in data analytics, I decided to use data from an activity I was familiar with, bike sharing.
+Being a D.C. native, I am quite familiar with Capital Bike Share, but I never thought of the outlying reasons as to why on some days there were more or less bikes available at docking stations near me.
+This project analyzes how external factors such as weather, temperature, and day influence the use of bike sharing.
+The dataset, extracted from Kaggle by Vivian YF Wang, contains the amount of rides that day, temperature, whether it is a workday or not, whether it is a holiday or not, air pressure, amount of rain or snow, humidity, wind, and the amount clouds per day. 
+
+Due to this being my first project, I was stumped with a lot of the coding. I was more familiar with python, so I wanted to challenge myself and focus on using SQL for this project.
+To simplify my confusion, I researched which codes to use for the specific results and learned what key words that SQL uses. 
+I used SQL to clean the data by grouping the data, ensuring that there were no null values to skew the results, and providing results suited for human reading.
+I then took my cleaned data to Tableau where I created 3 visualizations and a dashboard of all 3 visualizations. The first visualization illustrated the correlation of time of year, weather, and the amount of rentals in that month.
+The second visualization illustrated the amount of rentals over the given span and whether they fell on a weekend, holiday, or workday.
+The third visualization shows the amount of rides per category of temperature given cold, cool, warm, and hot weather. 
+To build off on this, in the future I plan to research which aspects of Capital Bikeshare are most liked and disliked among consumers to maximize user satisfaction.
+
+From analyzing this data, I took note of four key insights. First, snow decreases the amount of rentals, yet rain does not have much of a significant alteration.
+Second, Capital Bike Share is most used when it is hot (above 80° F), followed by warm weather (60°-80°), then cool (40°-60°), and least used when it is cold (under 40°).
+Initially, I hypothesized that the bike share would be most used on weekdays where it is warm but not hot.
+I suspect that is due to the amount of tourists as well during these warm seasons, causing an increase in rentals.
+I would recommend increasing the support services in the warmer and tourist seasons, as the bikes will be in high demand with higher rates of maintenance.
+This would ensure a more maximized amount of rentals as the availability would not hinder riders.
+One thing I learned during this as a general skill thought to have, to document my SQL queries in a notebook.
+Initially, I did not save any of my queries and I had to redo my project in order to document my queries. It was inefficient but it allowed me to practice my queries further. 
+
+Data Source: Wang, Vivian F https://www.kaggle.com/datasets/vivianyfwang/capital-bike-share-2018-20218 
+Viz: https://public.tableau.com/app/profile/adaora.okwesa/vizzes 
