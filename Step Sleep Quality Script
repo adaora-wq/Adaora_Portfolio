@@ -1,0 +1,26 @@
+#to present all data#
+import pandas as pd
+step_sleep = pd.read_csv(r'C:\Users\Adaor\Downloads\Step Sleep Quality Project(Sheet1).csv')
+print(step_sleep)
+#to gain statistical insight#
+import pandas as pd
+step_sleep = pd.read_csv(r'C:\Users\Adaor\Downloads\Step Sleep Quality Project(Sheet1).csv')
+step_sleep.describe()  # mean, std, min, max, quartiles
+print(step_sleep.describe())
+
+#Comparing and finding correlation#
+import pandas as pd
+from scipy import stats
+step_sleep = pd.read_csv(r'C:\Users\Adaor\Downloads\Step Sleep Quality Project(Sheet1).csv')
+
+steps = step_sleep['Step Count']
+sleep = step_sleep['Sleep length']
+
+pearson_r, pearson_p = stats.pearsonr(steps, sleep)
+print(f"Pearson r: {pearson_r:.3f}, p-value: {pearson_p:.4f}")
+median_steps = steps.median()
+high_step_days = step_sleep[steps > median_steps]['Sleep length']
+low_step_days = step_sleep[steps <= median_steps]['Sleep length']
+
+t_stat, t_p = stats.ttest_ind(high_step_days, low_step_days, equal_var=False)
+print(f"\nT-test (high vs low step days): t={t_stat:.3f}, p={t_p:.4f}")
