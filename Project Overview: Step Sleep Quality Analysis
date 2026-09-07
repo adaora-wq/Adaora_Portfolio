@@ -1,0 +1,20 @@
+This project analyzes the correlation between step count and sleep quality.
+Given this topic, I decided to collect my own data, using my personal step count for the day and the amount of sleep I would get that night.
+I collected my step count over a span of 26 days as a barrier I encountered was that I could only access my sleep data for those days.
+I input them into an Excel sheet and I then converted the sleep length from hours and minutes to just minutes. 
+
+With the optimal formatting, I input the .csv file into PyCharm for further analysis with Python.
+There, I ran a script to gain the statistical descriptions as well as the correlations.
+I found the mean, max, min, quartiles, and count as well as the t and p values.
+My average step count was about 6938 steps a day and my average sleep length was about 6 hours and 42 minutes a night.
+The minimum number of steps I got was 355 and the man was 22,253 steps.
+The minimum amount of sleep I got was 4 hours and 55 minutes while the maximum was 8 hours and 30 minutes.
+
+Using the Pearson testing the linear relationship resulting in the values of  t=-0.302 and p-value=0.3575 and the T-test resulting in the values of p=0.7652 and r=-0.188 showed that there was no correlation between the step count and sleep length as they both exceeded the p-value standard of p < 0.05.
+Initially, I hypothesized that a higher step count would increase the amount of steps taken that day and my hypothesis was rejected by the p-values.
+
+To create a visualization of these results, I imported my .csv file to Tableau where I used a bar chart to show the comparison of the two data categories.
+Seeing the two categories side-by-side further illustrates the lack of correlation between them. 
+
+Data Source: Okwesa, Adaora https://1drv.ms/x/c/8f61c04039583456/IQCG0Ndar2cGQLpDs529E97jAVHWlRdLIaC-2inWe96wAL4?e=S6Kd3Y  
+Viz: https://public.tableau.com/app/profile/adaora.okwesa/vizzes 
